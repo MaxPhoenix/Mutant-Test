@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+/**
+ * Clase contenedora de funciones de búsqueda de repetición de letras identificadas por la orientacion de las mismas
+ * Las funciones a utilizar se guardan en un map cuya clave es la orientacion en la cual se va a buscar las letras repetidas
+ */
 public class DnaCrossBoardDirectionMethodsContainer {
 
     private Map<DnaCrossBoardDirectionOrientations, BiFunction<DnaCrossWord, DnaCrossBoardDirectionOrientations, Boolean>> directionalSearchMethods = new HashMap<>();

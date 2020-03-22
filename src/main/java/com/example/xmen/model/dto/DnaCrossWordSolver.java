@@ -25,6 +25,7 @@ public class DnaCrossWordSolver {
             for(int crossWordRowIndex = 0; crossWordRowIndex < dna.length; crossWordRowIndex++) {
                 crossWordRow = dna[crossWordRowIndex];
 
+                //si la cantidad de letras de la palabra es menor a "n"
                 if (this.isValidPieceOfDnaToBeChecked(dna, crossWordRow)) {
                     dnaCrossWord.setCurrentDnaRow(dna[crossWordRowIndex]);
                     dnaCrossWord.setCurrentRowIndex(crossWordRowIndex);
@@ -33,6 +34,7 @@ public class DnaCrossWordSolver {
                         dnaCrossWord.setCurrentDnaRowLetter(crossWordRow.charAt(crossWordColIndex));
                         dnaCrossWord.setCurrentRowCurrentLetterIndex(crossWordColIndex);
 
+                        //verifica si la letra a validar es una de las obligatorias
                         if (this.allowedLetters.get(dnaCrossWord.getCurrentDnaRowLetter()) == null)
                             throw new IllegalArgumentException("Solo se puede evaluar el ADN que contengan las letras" + this.allowedLetters.values());
 
@@ -59,10 +61,18 @@ public class DnaCrossWordSolver {
         return true;
     }
 
+    /**
+     * Funcion que busca letras repetidas en todas las direcciones para una letra dada.
+     * @param dnaCrossWord Objeto de matriz de letras para obtener los datos actuales (letra, indice de fila, columna , etc)
+     * @return cantidad de veces que se encuentra un match para mutante, una por cada direccion dada.
+     */
     private int getMutatedMatches(DnaCrossWord dnaCrossWord){
         DnaCrossBoardDirectionMethodsContainer directionalMethodsContainer = new DnaCrossBoardDirectionMethodsContainer();
         AtomicReference<Integer> mutatedMatches = new AtomicReference<>(0);
 
+        /*de acuerdo a la orientacion , se llama al metodo correspondiente pasandole los datos acuales de la matriz
+          asi como la direccion en la cual buscar las letras repetidas.
+        * */
         directionalMethodsContainer.getDirectionalSearchMethods().forEach((directionalFuntionKey, directionalFunction) ->{
             boolean mutatedDnaFoundInDirection =  directionalFunction.apply(dnaCrossWord, directionalFuntionKey);
             if(mutatedDnaFoundInDirection)

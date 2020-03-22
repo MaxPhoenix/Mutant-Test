@@ -3,8 +3,15 @@ package com.example.xmen.strategy;
 import com.example.xmen.model.dto.DnaCrossWord;
 import java.util.function.BiFunction;
 
+/**
+ * Clase que contiene metodos de búsqueda de letras repetidas en la matriz de acuerdo a una orientacion de búsqueda
+ */
 public class MutantDnaSearchMethods {
 
+    /**
+     * Método que , dado un objeto de matriz de letras, busca las letras repetidas horizontalmente dependiendo de la orientacion
+     * la cantidad de letras repetidas a buscar se determinan desde el objeto de matriz de letras
+     */
     public static final BiFunction<DnaCrossWord, DnaCrossBoardDirectionOrientations, Boolean>
             searchRepeatedLettersHorizontally = (dnaCrossWord, orientation) -> {
         if(dnaCrossWord.notEnoughLettersToCheckOnRow(dnaCrossWord.getRequiredLetterMatches(),orientation))
@@ -33,7 +40,10 @@ public class MutantDnaSearchMethods {
         }
     };
 
-
+    /**
+     * Método que , dado un objeto de matriz de letras, busca las letras repetidas verticalmente dependiendo de la orientacion
+     * la cantidad de letras repetidas a buscar se determinan desde el objeto de matriz de letras
+     */
     public static final BiFunction<DnaCrossWord, DnaCrossBoardDirectionOrientations, Boolean>
             searchRepeatedLettersVertically = (dnaCrossWord, orientation) -> {
         if(dnaCrossWord.notEnoughLettersToCheckOnColumn(dnaCrossWord.getRequiredLetterMatches(), orientation))
@@ -64,6 +74,10 @@ public class MutantDnaSearchMethods {
         }
     };
 
+    /**
+     * Método que , dado un objeto de matriz de letras, busca las letras repetidas de forma obliqua dependiendo de la orientacion
+     * la cantidad de letras repetidas a buscar se determinan desde el objeto de matriz de letras
+     */
     public static final BiFunction<DnaCrossWord, DnaCrossBoardDirectionOrientations, Boolean>
             searchRepeatedLettersDiagonally = (dnaCrossWord, orientation) -> {
         if(dnaCrossWord.notEnoughLettersToCheckOnDiagonal(dnaCrossWord.getRequiredLetterMatches(), orientation))
